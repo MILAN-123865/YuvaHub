@@ -59,7 +59,7 @@ export default function CampusAlumniHub() {
   const [isSendingIntro, setIsSendingIntro] = useState(false);
 
   // Profile Transition Form State
-  const [userAlumniStatus, setUserAlumniStatus] = useState<'student' | 'alumni'>(profile?.alumni_status || profile?.alumniStatus || 'student');
+  const [userAlumniStatus, setUserAlumniStatus] = useState<'student' | 'alumni'>((profile?.alumni_status || profile?.alumniStatus) === 'alumni' ? 'alumni' : 'student');
   const [userGradYear, setUserGradYear] = useState<number>(profile?.graduation_year || profile?.graduationYear || new Date().getFullYear());
   const [userCurrentCompany, setUserCurrentCompany] = useState<string>(profile?.current_company || profile?.currentCompany || '');
   const [userIsOpenToMentoring, setUserIsOpenToMentoring] = useState<boolean>(profile?.is_open_to_mentoring || profile?.isOpenToMentoring || false);
