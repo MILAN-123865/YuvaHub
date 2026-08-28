@@ -8,8 +8,6 @@ export interface MaskedIntroductionEmailParams {
   acceptLink?: string;
 }
 
- feature/alumni-network-directory
-
 export interface TransactionalNotificationParams {
   to: string;
   subject: string;
@@ -17,7 +15,6 @@ export interface TransactionalNotificationParams {
   html?: string;
 }
 
- main
 export const emailService = {
   /**
    * Send a transactional email wrapper. Direct email addresses are kept masked from the student.
@@ -49,8 +46,6 @@ export const emailService = {
       html: htmlContent,
     });
   },
- feature/alumni-network-directory
-
 
   /**
    * Fire off transactional notification loop to alert candidate or user immediately.
@@ -64,5 +59,4 @@ export const emailService = {
       html: html || `<div style="font-family: sans-serif; padding: 20px; line-height: 1.6;">${body}</div>`,
     });
   },
- main
 };
