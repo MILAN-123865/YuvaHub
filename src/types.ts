@@ -50,6 +50,14 @@ export interface UserProfile {
   points?: number;
   badges?: string[];
   isPublicProfile?: boolean;
+  graduation_year?: number | null;
+  graduationYear?: number | null;
+  current_company?: string;
+  currentCompany?: string;
+  alumni_status?: 'student' | 'alumni';
+  alumniStatus?: 'student' | 'alumni';
+  is_open_to_mentoring?: boolean;
+  isOpenToMentoring?: boolean;
 }
 
 export interface RecommendationPreferences {
