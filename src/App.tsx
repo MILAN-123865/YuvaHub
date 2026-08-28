@@ -53,10 +53,10 @@ const PortfolioShowcase = lazy(() => import('./components/tabs/PortfolioShowcase
 const MentorshipNetwork = lazy(() => import('./components/tabs/MentorshipNetwork'));
 const AchievementCenter = lazy(() => import('./components/tabs/AchievementCenter'));
 const StudentMentalWellnessDeskPage = lazy(() => import('./pages/StudentMentalWellnessDeskPage'));
-const CareerPathSimulator = lazy(() => import('./components/Tabs/CareerPathSimulator'));
+const CareerPathSimulator = lazy(() => import('./components/tabs/CareerPathSimulator'));
 const CampusResearchIpLicensingStudioPage = lazy(() => import('./pages/CampusResearchIpLicensingStudioPage'));
-const StudyGroupRooms = lazy(() => import('./components/Tabs/StudyGroupRooms'));
-const ResourceVault = lazy(() => import('./components/Tabs/ResourceVault'));
+const StudyGroupRooms = lazy(() => import('./components/tabs/StudyGroupRooms'));
+const ResourceVault = lazy(() => import('./components/tabs/ResourceVault'));
 
 const ResearchGrantTelemetryLab = lazy(() => import('./pages/Enterprise/ResearchGrantTelemetryLab').then(m => ({ default: m.ResearchGrantTelemetryLab })));
 const OpenSourceBountyStudio = lazy(() => import('./components/tabs/OpenSourceBountyStudio'));
