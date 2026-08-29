@@ -1310,6 +1310,21 @@ export async function contributeToAlumniEndowment(id: string, payload?: any): Pr
   return apiClientRequest(`/campus/endowments/${encodeURIComponent(id)}/contribute`, 'POST', payload);
 }
 
+ feature/alumni-network-directory
+
+export async function fetchAlumniMentorshipSlots(...args: any[]): Promise<any> {
+  return apiClientRequest('/campus/mentorship/slots');
+}
+
+export async function registerAlumniMentorshipSlot(payload: any): Promise<any> {
+  return apiClientRequest('/campus/mentorship/slots', 'POST', payload);
+}
+
+export async function bookAlumniMentorshipSession(id: string, studentId?: string, studentName?: string): Promise<any> {
+  return apiClientRequest(`/campus/mentorship/slots/${encodeURIComponent(id)}/book`, 'POST', { studentId, studentName });
+}
+
+ main
 export async function fetchResearchPatents(...args: any[]): Promise<any> {
   return apiClientRequest('/campus/research-patents');
 }
@@ -1322,6 +1337,7 @@ export async function executePatentLicensingAgreement(id: string, payload?: any)
   return apiClientRequest(`/campus/research-patents/${encodeURIComponent(id)}/license`, 'POST', payload);
 }
 
+ feature/alumni-network-directory
 export async function fetchAlumniMentorshipSlots(filters?: any): Promise<any> {
   const params = new URLSearchParams();
   if (filters?.campusName && filters.campusName !== 'All') params.append('campusName', filters.campusName);
@@ -1362,6 +1378,8 @@ export async function bookAlumniMentorshipSession(id: string, payloadOrStudentId
   }
   return await response.json();
 }
+
+ main
 
 export async function fetchMentalWellnessCheckIns(...args: any[]): Promise<any> {
   return apiClientRequest('/campus/mental-wellness/check-ins');

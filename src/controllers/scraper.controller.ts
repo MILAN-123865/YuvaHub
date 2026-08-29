@@ -2,9 +2,14 @@ import { Request, Response } from 'express';
 import { Queue, QueueEvents } from 'bullmq';
 import { ScraperBlueprint } from '../models/ScraperBlueprint';
 
+ feature/alumni-network-directory
 const connection = { host: 'localhost', port: 6379 };
 const scraperQueue = new Queue('scraper-queue', { connection });
 const scraperQueueEvents = new QueueEvents('scraper-queue', { connection });
+
+const scraperQueue = new Queue('scraper-queue', { connection: { host: 'localhost', port: 6379 } });
+const scraperQueueEvents = new QueueEvents('scraper-queue', { connection: { host: 'localhost', port: 6379 } });
+ main
 
 export const testScraperBlueprint = async (req: Request, res: Response) => {
   try {
