@@ -1,5 +1,9 @@
 import { Worker, Job } from 'bullmq';
+ feat/portfolio-website-generator-917
 import { redis as redisClient } from '../config/redis.js';
+
+import { redisClient } from '../api/redis';
+ main
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Opportunity } from '../models/Opportunity.js';
 import { normalizeStipend } from '../utils/stipendNormalizer.js';
@@ -90,7 +94,11 @@ export const opportunityDeduplicationWorker = new Worker(
                 return { status: 'created', id: newOpportunity._id };
             }
         } catch (error) {
+ feat/portfolio-website-generator-917
             (logger.error as any)(`Deduplication worker failed for job ${job.id}:`, error);
+
+            logger.error({ error }, `Deduplication worker failed for job ${job.id}:`);
+ main
             throw error;
         }
     },
