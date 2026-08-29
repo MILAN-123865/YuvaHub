@@ -4,6 +4,7 @@ import { parsePagination } from "../../lib/utils.js";
 import { paginate } from "../../lib/pagination.js";
 import { AppError } from "../../lib/AppError.js";
 import { sendSuccess, sendError, sendPaginated } from "../../lib/apiResponse.js";
+import mongoose from "mongoose";
 
 // New Imports for Platform Stats & Moderation
 import { ObjectId } from "mongodb";
@@ -61,7 +62,7 @@ export const getPlatformStats = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    logger.error(error, 'Error fetching platform stats:');
+    logger.error({ error }, 'Error fetching platform stats:');
     res.status(500).json({ error: 'Internal server error' });
   }
 };
@@ -89,7 +90,7 @@ export const getUsersList = async (req: Request, res: Response) => {
       pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
     });
   } catch (error) {
-    logger.error(error, 'Error fetching users list:');
+    logger.error({ error }, 'Error fetching users list:');
     res.status(500).json({ error: 'Internal server error' });
   }
 };
@@ -115,7 +116,7 @@ export const performModerationAction = async (req: Request, res: Response) => {
 
     res.status(400).json({ error: 'Invalid target type or action' });
   } catch (error) {
-    logger.error(error, 'Error performing moderation action:');
+    logger.error({ error }, 'Error performing moderation action:');
     res.status(500).json({ error: 'Internal server error' });
   }
 };

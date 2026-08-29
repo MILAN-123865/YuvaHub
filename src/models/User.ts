@@ -27,6 +27,7 @@ const userSchema = new Schema<IUser>(
     { timestamps: true }
 );
 
+// Pre-save hook to calculate level based on reputation score
 userSchema.pre('save', function () {
     if (this.isModified('reputation_score')) {
         // Simple leveling formula: Level = floor(sqrt(reputation_score / 100)) + 1
