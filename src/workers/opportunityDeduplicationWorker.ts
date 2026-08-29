@@ -1,9 +1,9 @@
 import { Worker, Job } from 'bullmq';
-import { redisClient } from '../config/redis';
+import { redis as redisClient } from '../config/redis.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { Opportunity } from '../models/Opportunity';
-import { normalizeStipend } from '../utils/stipendNormalizer';
-import { logger } from '../utils/logger';
+import { Opportunity } from '../models/Opportunity.js';
+import { normalizeStipend } from '../utils/stipendNormalizer.js';
+import { logger } from '../utils/logger.js';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
@@ -110,9 +110,9 @@ export const opportunityDeduplicationWorker = new Worker(
                 return { status: 'created', id: newOpportunity._id };
             }
         } catch (error) {
-            logger.error(`Deduplication worker failed for job ${job.id}:`, error);
+            logger.error({ err: error }, `Deduplication worker failed for job ${job.id}:`);
             throw error;
         }
     },
-    { connection: redisClient }
+    { connection: redisClient as any }
 );
