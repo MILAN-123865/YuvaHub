@@ -412,11 +412,7 @@ export const ingestOpportunity = async (req: Request, res: Response) => {
       jobId: job.id,
     });
   } catch (error) {
- feat/smart-interview-scheduling-918
-    logger.error({ err: error }, 'Error ingesting opportunity:');
-
     logger.error({ error }, 'Error ingesting opportunity:');
- main
     res.status(500).json({ error: 'Internal server error' });
   }
 };

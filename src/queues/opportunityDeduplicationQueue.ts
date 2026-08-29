@@ -1,9 +1,5 @@
 import { Queue, QueueOptions } from 'bullmq';
- feat/smart-interview-scheduling-918
-import { redis as redisClient } from '../config/redis.js';
-
-import { redisClient } from '../api/redis';
- main
+import { redisClient } from '../config/redis.js';
 
 /**
  * Queue options for the opportunity deduplication pipeline.

@@ -22,24 +22,17 @@ const userSchema = new Schema<IUser>(
 );
 
 // Pre-save hook to calculate level based on reputation score
- feat/smart-interview-scheduling-918
-userSchema.pre('save', function () {
+userSchema.pre('save', function (this: any) {
+    if (this.isModified && this.isModified('reputation_score')) {
+        this.level = Math.floor(Math.sqrt((this.reputation_score || 0) / 100)) + 1;
 
-userSchema.pre('save', function (next: any) {
- main
-    if (this.isModified('reputation_score')) {
-        // Simple leveling formula: Level = floor(sqrt(reputation_score / 100)) + 1
-        this.level = Math.floor(Math.sqrt(this.reputation_score / 100)) + 1;
-
-        // Badge assignment logic
         const newBadges: string[] = [];
         if (this.reputation_score >= 100) newBadges.push('Novice');
         if (this.reputation_score >= 500) newBadges.push('Contributor');
         if (this.reputation_score >= 1000) newBadges.push('Expert');
         if (this.reputation_score >= 5000) newBadges.push('Legend');
 
-        // Merge with existing badges without duplicates
-        this.badges = Array.from(new Set([...this.badges, ...newBadges]));
+        this.badges = Array.from(new Set([...(this.badges || []), ...newBadges]));
     }
 });
 

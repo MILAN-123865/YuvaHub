@@ -1,9 +1,5 @@
 import { Worker, Job } from 'bullmq';
- feat/smart-interview-scheduling-918
-import { redis as redisClient } from '../config/redis.js';
-
-import { redisClient } from '../api/redis';
- main
+import { redisClient } from '../config/redis.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { Opportunity } from '../models/Opportunity.js';
 import { normalizeStipend } from '../utils/stipendNormalizer.js';
@@ -114,11 +110,7 @@ export const opportunityDeduplicationWorker = new Worker(
                 return { status: 'created', id: newOpportunity._id };
             }
         } catch (error) {
- feat/smart-interview-scheduling-918
-            logger.error({ err: error }, `Deduplication worker failed for job ${job.id}:`);
-
             logger.error({ error }, `Deduplication worker failed for job ${job.id}:`);
- main
             throw error;
         }
     },
