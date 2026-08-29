@@ -412,11 +412,7 @@ export const ingestOpportunity = async (req: Request, res: Response) => {
       jobId: job.id,
     });
   } catch (error) {
- feat/portfolio-website-generator-917
-    (logger.error as any)('Error ingesting opportunity:', error);
-
     logger.error({ error }, 'Error ingesting opportunity:');
- main
     res.status(500).json({ error: 'Internal server error' });
   }
 };

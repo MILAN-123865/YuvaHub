@@ -1,15 +1,8 @@
 import { Request, Response } from 'express';
- feat/portfolio-website-generator-917
 import { User } from '../../models/User.js';
 import { ReputationLog } from '../../models/ReputationLog.js';
 import { redis as redisClient } from '../../config/redis.js';
 import { logger } from '../../utils/logger.js';
-
-import { User } from '../../models/User';
-import { ReputationLog } from '../../models/ReputationLog';
-import { redisClient } from '../redis';
-import { logger } from '../../utils/logger';
- main
 
 /**
  * Fetches the real-time weekly leaderboard from Redis.
@@ -29,11 +22,7 @@ export const getLeaderboard = async (req: Request, res: Response) => {
 
         res.status(200).json({ data: userDetails });
     } catch (error) {
- feat/portfolio-website-generator-917
-        (logger.error as any)('Error fetching leaderboard:', error);
-
         logger.error({ error }, 'Error fetching leaderboard:');
- main
         res.status(500).json({ error: 'Internal server error' });
     }
 };
@@ -60,11 +49,7 @@ export const getUserReputationHistory = async (req: Request, res: Response) => {
             pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
         });
     } catch (error) {
- feat/portfolio-website-generator-917
-        (logger.error as any)('Error fetching user reputation history:', error);
-
         logger.error({ error }, 'Error fetching user reputation history:');
- main
         res.status(500).json({ error: 'Internal server error' });
     }
 };

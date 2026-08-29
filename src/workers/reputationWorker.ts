@@ -1,16 +1,8 @@
- feat/portfolio-website-generator-917
 import { eventBus } from '../utils/eventBus.js';
 import { User } from '../models/User.js';
 import { ReputationLog } from '../models/ReputationLog.js';
-import { redis as redisClient } from '../config/redis.js';
+import { redisClient } from '../config/redis.js';
 import { logger } from '../utils/logger.js';
-
-import { eventBus } from '../utils/eventBus';
-import { User } from '../models/User';
-import { ReputationLog } from '../models/ReputationLog';
-import { redisClient } from '../api/redis';
-import { logger } from '../utils/logger';
- main
 
 /**
  * Configuration mapping actions to point values.
@@ -59,11 +51,7 @@ export const initializeReputationWorker = () => {
 
                 logger.info(`Reputation updated for user ${data.userId}: +${points} points (${action})`);
             } catch (error) {
- feat/portfolio-website-generator-917
-                (logger.error as any)(`Error processing reputation event ${action}:`, error);
-
                 logger.error({ error }, `Error processing reputation event ${action}:`);
- main
             }
         });
     });
