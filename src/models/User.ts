@@ -1,26 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUser extends Document {
- feature/alumni-network-directory
-  name: string;
-  email: string;
-  reputation_score?: number;
-  level?: number;
-  createdAt?: Date;
-}
-
-const UserSchema: Schema = new Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    reputation_score: { type: Number, default: 0 },
-    level: { type: Number, default: 1 },
-  },
-  { timestamps: true }
-);
-
-export const User = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
-
     name: string;
     email: string;
     password?: string;
@@ -47,8 +27,7 @@ const userSchema = new Schema<IUser>(
     { timestamps: true }
 );
 
-// Pre-save hook to calculate level based on reputation score
-userSchema.pre('save', function (next) {
+userSchema.pre('save', function () {
     if (this.isModified('reputation_score')) {
         // Simple leveling formula: Level = floor(sqrt(reputation_score / 100)) + 1
         this.level = Math.floor(Math.sqrt(this.reputation_score / 100)) + 1;
@@ -63,8 +42,6 @@ userSchema.pre('save', function (next) {
         // Merge with existing badges without duplicates
         this.badges = Array.from(new Set([...this.badges, ...newBadges]));
     }
-    next();
 });
 
-export const User = mongoose.model<IUser>('User', userSchema);
- main
+export const User = mongoose.models.User || mongoose.model<IUser>('User', userSchema);

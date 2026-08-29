@@ -1,9 +1,5 @@
 import { Worker, Job } from 'bullmq';
- feature/alumni-network-directory
 import { connection } from '../queues/connection';
-
-import { connection as redisClient } from '../queues/connection';
- main
 import { DeveloperProfile } from '../models/DeveloperProfile';
 import { fetchGitHubStats } from '../services/githubService';
 import { fetchLeetCodeStats } from '../services/leetcodeService';

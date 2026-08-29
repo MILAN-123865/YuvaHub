@@ -18,11 +18,7 @@ export const scraperWorker = new Worker(
 
     if (blueprint.renderMode === 'static') {
       const response = await axios.get(blueprint.targetUrl, {
- feature/alumni-network-directory
         headers: blueprint.headers ? (blueprint.headers instanceof Map ? Object.fromEntries(blueprint.headers) : (blueprint.headers as any)) : {},
-
-        headers: blueprint.headers || {},
- main
       });
       html = response.data;
     } else {

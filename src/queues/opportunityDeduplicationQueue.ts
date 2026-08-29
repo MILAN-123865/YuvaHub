@@ -1,28 +1,12 @@
- feature/alumni-network-directory
-import { Queue } from "bullmq";
-import { connection } from "./connection";
-
-export const opportunityDeduplicationQueue = new Queue(
-  "opportunity-deduplication",
-  {
-    connection: connection as any,
-    defaultJobOptions: {
-      attempts: 3,
-      removeOnComplete: { count: 100 },
-      removeOnFail: { count: 50 },
-    },
-  }
-);
-
 import { Queue, QueueOptions } from 'bullmq';
-import { redisClient } from '../config/redis';
+import { connection } from './connection';
 
 /**
  * Queue options for the opportunity deduplication pipeline.
  * Configured for reliability and graceful shutdowns.
  */
 const queueOptions: QueueOptions = {
-    connection: redisClient,
+    connection: connection as any,
     defaultJobOptions: {
         attempts: 3,
         backoff: {
@@ -63,4 +47,3 @@ export const addOpportunityToDeduplicationQueue = async (opportunityData: any) =
         }
     );
 };
- main

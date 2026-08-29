@@ -5,16 +5,11 @@ import { paginate } from "../../lib/pagination.js";
 import { AppError } from "../../lib/AppError.js";
 import { sendSuccess, sendError, sendPaginated } from "../../lib/apiResponse.js";
 
- feature/alumni-network-directory
 // New Imports for Platform Stats & Moderation
+import { ObjectId } from "mongodb";
 import { User } from "../../models/User";
 import { Opportunity } from "../../models/Opportunity";
-import { logger } from "../../utils/logger";
-
-// Replaced missing model imports with MongoDB driver usage
-import { ObjectId } from "mongodb";
 import { logger } from "../../utils/logger.js";
- main
 
 const sseClients: any[] = [];
 
@@ -113,10 +108,7 @@ export const performModerationAction = async (req: Request, res: Response) => {
     }
 
     if (targetType === 'opportunity' && action === 'remove') {
- feature/alumni-network-directory
-      await (Opportunity as any).findByIdAndUpdate(targetId, { status: 'removed' });
       await dbCommand.collection('opportunities').updateOne({ _id: new ObjectId(targetId) }, { $set: { status: 'removed' } });
- main
       logger.info(`Admin ${req.user?.uid} removed opportunity ${targetId}`);
       return res.status(200).json({ message: 'Opportunity removed successfully' });
     }

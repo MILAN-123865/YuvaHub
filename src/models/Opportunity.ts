@@ -1,22 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IOpportunity extends Document {
- feature/alumni-network-directory
-  title: string;
-  status: string;
-  createdAt?: Date;
-}
-
-const OpportunitySchema: Schema = new Schema(
-  {
-    title: { type: String, required: true },
-    status: { type: String, default: 'active' },
-  },
-  { timestamps: true }
-);
-
-export const Opportunity = mongoose.models.Opportunity || mongoose.model<IOpportunity>('Opportunity', OpportunitySchema);
-
     title: string;
     company: string;
     description: string;
@@ -66,5 +50,4 @@ const opportunitySchema = new Schema<IOpportunity>(
 opportunitySchema.index({ 'normalizedStipend.min': 1, 'normalizedStipend.max': 1 });
 opportunitySchema.index({ status: 1, createdAt: -1 });
 
-export const Opportunity = mongoose.model<IOpportunity>('Opportunity', opportunitySchema);
- main
+export const Opportunity = mongoose.models.Opportunity || mongoose.model<IOpportunity>('Opportunity', opportunitySchema);
