@@ -83,7 +83,8 @@ export const syncSponsorMetricsToDB = async () => {
 
             if (scoreStr) {
                 const score = parseInt(scoreStr, 10);
-                const metrics = await redisClient.hGetAll(`sponsor_metrics:${sponsor._id}`);
+                const client = redisClient as any;
+                const metrics = await (client.hGetAll ? client.hGetAll(`sponsor_metrics:${sponsor._id}`) : client.hgetall(`sponsor_metrics:${sponsor._id}`));
 
                 sponsor.engagementScore = score;
                 if (metrics.resourcesProvided) sponsor.resourcesProvided = parseInt(metrics.resourcesProvided, 10);
